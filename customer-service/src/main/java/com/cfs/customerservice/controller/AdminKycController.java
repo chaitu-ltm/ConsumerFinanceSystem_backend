@@ -15,18 +15,14 @@ import com.cfs.customerservice.dto.AdminKycResponse;
 import com.cfs.customerservice.dto.KycActionResponse;
 import com.cfs.customerservice.dto.KycRejectRequest;
 import com.cfs.customerservice.service.AdminKycService;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/admin/kyc")
+@RequiredArgsConstructor
 public class AdminKycController {
 
     private final AdminKycService adminKycService;
-
-    public AdminKycController(
-            AdminKycService adminKycService) {
-
-        this.adminKycService = adminKycService;
-    }
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/pending")

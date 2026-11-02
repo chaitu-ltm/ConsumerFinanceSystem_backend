@@ -28,17 +28,14 @@ import com.cfs.customerservice.dto.OnboardingStatusResponse;
 import com.cfs.customerservice.service.CustomerService;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/customers")
+@RequiredArgsConstructor
 public class CustomerController {
 
 	private final CustomerService customerService;
-
-	public CustomerController(CustomerService customerService) {
-
-		this.customerService = customerService;
-	}
 
 	// =====================================================
 	// CUSTOMER PROFILE

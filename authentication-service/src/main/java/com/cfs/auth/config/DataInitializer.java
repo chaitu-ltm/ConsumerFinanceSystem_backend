@@ -16,8 +16,10 @@ import com.cfs.auth.entity.User;
 
 import com.cfs.auth.repository.RoleRepository;
 import com.cfs.auth.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 
 @Component
+@RequiredArgsConstructor
 public class DataInitializer implements CommandLineRunner {
 
 	private final RoleRepository roleRepository;
@@ -25,13 +27,6 @@ public class DataInitializer implements CommandLineRunner {
 	private final UserRepository userRepository;
 
 	private final PasswordEncoder passwordEncoder;
-
-	public DataInitializer(RoleRepository roleRepository, UserRepository userRepository,
-			PasswordEncoder passwordEncoder) {
-		this.roleRepository = roleRepository;
-		this.userRepository = userRepository;
-		this.passwordEncoder = passwordEncoder;
-	}
 
 	@Value("${security.bootstrap-admin.email}")
 	private String adminEmail;

@@ -26,16 +26,15 @@ import com.cfs.auth.dto.RegisterResponse;
 import com.cfs.auth.service.AuthService;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/admin/users")
+@RequiredArgsConstructor
 public class AdminUserController {
 
     private final AuthService authService;
 
-    public AdminUserController(AuthService authService) {
-        this.authService = authService;
-    }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping

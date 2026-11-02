@@ -15,12 +15,14 @@ import com.cfs.customerservice.repository.BankAccountRepository;
 import com.cfs.customerservice.repository.CustomerAddressRepository;
 import com.cfs.customerservice.repository.CustomerDocumentRepository;
 import com.cfs.customerservice.repository.EmploymentDetailRepository;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Single source of truth for KYC submission readiness and the
  * onboarding status derived from KYC status plus readiness.
  */
 @Component
+@RequiredArgsConstructor
 public class KycReadinessEvaluator {
 
     public static final List<String> REQUIRED_DOCUMENT_TYPES = List.of(
@@ -37,18 +39,6 @@ public class KycReadinessEvaluator {
     private final BankAccountRepository bankAccountRepository;
 
     private final CustomerDocumentRepository documentRepository;
-
-    public KycReadinessEvaluator(
-            CustomerAddressRepository addressRepository,
-            EmploymentDetailRepository employmentRepository,
-            BankAccountRepository bankAccountRepository,
-            CustomerDocumentRepository documentRepository) {
-
-        this.addressRepository = addressRepository;
-        this.employmentRepository = employmentRepository;
-        this.bankAccountRepository = bankAccountRepository;
-        this.documentRepository = documentRepository;
-    }
 
     public Readiness evaluate(Customer customer) {
 

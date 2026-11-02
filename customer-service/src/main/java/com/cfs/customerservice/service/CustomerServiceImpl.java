@@ -37,9 +37,11 @@ import com.cfs.customerservice.repository.CustomerAddressRepository;
 import com.cfs.customerservice.repository.CustomerDocumentRepository;
 import com.cfs.customerservice.repository.CustomerRepository;
 import com.cfs.customerservice.repository.EmploymentDetailRepository;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
@@ -57,26 +59,6 @@ public class CustomerServiceImpl implements CustomerService {
     private final AdminKycService adminKycService;
     private final CustomerOwnership ownership;
 
-
-    public CustomerServiceImpl(
-            CustomerRepository customerRepository,
-            CustomerAddressRepository addressRepository,
-            EmploymentDetailRepository employmentRepository,
-            BankAccountRepository bankAccountRepository,
-            CustomerDocumentRepository documentRepository,
-            KycReadinessEvaluator kycReadinessEvaluator,
-            AdminKycService adminKycService,
-            CustomerOwnership ownership) {
-
-        this.customerRepository = customerRepository;
-        this.addressRepository = addressRepository;
-        this.employmentRepository = employmentRepository;
-        this.bankAccountRepository = bankAccountRepository;
-        this.documentRepository = documentRepository;
-        this.kycReadinessEvaluator = kycReadinessEvaluator;
-        this.adminKycService = adminKycService;
-        this.ownership = ownership;
-    }
 
 
     // =====================================================

@@ -16,24 +16,15 @@ import com.cfs.customerservice.exceptions.ResourceNotFoundException;
 import com.cfs.customerservice.exceptions.WorkflowConflictException;
 import com.cfs.customerservice.repository.CustomerDocumentRepository;
 import com.cfs.customerservice.repository.CustomerRepository;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class AdminKycServiceImpl implements AdminKycService {
 
     private final CustomerRepository customerRepository;
     private final CustomerDocumentRepository customerDocumentRepository;
     private final KycReadinessEvaluator kycReadinessEvaluator;
-
-    public AdminKycServiceImpl(
-            CustomerRepository customerRepository,
-            CustomerDocumentRepository customerDocumentRepository,
-            KycReadinessEvaluator kycReadinessEvaluator) {
-
-        this.customerRepository = customerRepository;
-        this.customerDocumentRepository =
-                customerDocumentRepository;
-        this.kycReadinessEvaluator = kycReadinessEvaluator;
-    }
 
     @Override
     @Transactional(readOnly = true)

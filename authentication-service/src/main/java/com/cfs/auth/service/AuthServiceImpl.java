@@ -38,6 +38,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
 	private final UserRepository userRepository;
@@ -49,16 +50,6 @@ public class AuthServiceImpl implements AuthService {
 	private final AuthenticationManager authenticationManager;
 
 	private final JwtService jwtService;
-
-	public AuthServiceImpl(UserRepository userRepository, RoleRepository roleRepository,
-			PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, JwtService jwtService) {
-
-		this.userRepository = userRepository;
-		this.roleRepository = roleRepository;
-		this.passwordEncoder = passwordEncoder;
-		this.authenticationManager = authenticationManager;
-		this.jwtService = jwtService;
-	}
 
 	@Override
 	public RegisterResponse registerCustomer(RegisterRequest request) {

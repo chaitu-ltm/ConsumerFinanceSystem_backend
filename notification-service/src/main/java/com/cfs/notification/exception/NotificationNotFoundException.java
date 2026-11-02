@@ -1,0 +1,13 @@
+package com.cfs.notification.exception;
+
+public class NotificationNotFoundException
+        extends RuntimeException {
+
+    private static final long serialVersionUID = 1L;
+
+    public NotificationNotFoundException(
+            String message) {
+
+        super(message);
+    }
+}

@@ -1,9 +1,15 @@
 package com.cfs.customerservice.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "bank_accounts")
+@Getter
+@Setter
+@NoArgsConstructor
 public class BankAccount {
 
     @Id
@@ -15,70 +21,6 @@ public class BankAccount {
 
     @Column(name = "account_holder_name", nullable = false)
     private String accountHolderName;
-
-    public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Long getCustomerId() {
-		return customerId;
-	}
-
-	public void setCustomerId(Long customerId) {
-		this.customerId = customerId;
-	}
-
-	public String getAccountHolderName() {
-		return accountHolderName;
-	}
-
-	public void setAccountHolderName(String accountHolderName) {
-		this.accountHolderName = accountHolderName;
-	}
-
-	public String getBankName() {
-		return bankName;
-	}
-
-	public void setBankName(String bankName) {
-		this.bankName = bankName;
-	}
-
-	public String getAccountNumber() {
-		return accountNumber;
-	}
-
-	public void setAccountNumber(String accountNumber) {
-		this.accountNumber = accountNumber;
-	}
-
-	public String getIfscCode() {
-		return ifscCode;
-	}
-
-	public void setIfscCode(String ifscCode) {
-		this.ifscCode = ifscCode;
-	}
-
-	public String getAccountType() {
-		return accountType;
-	}
-
-	public void setAccountType(String accountType) {
-		this.accountType = accountType;
-	}
-
-	public boolean isPrimaryAccount() {
-		return primaryAccount;
-	}
-
-	public void setPrimaryAccount(boolean primaryAccount) {
-		this.primaryAccount = primaryAccount;
-	}
 
 	@Column(name = "bank_name", nullable = false)
     private String bankName;
@@ -95,8 +37,4 @@ public class BankAccount {
     @Column(name = "primary_account", nullable = false)
     private boolean primaryAccount;
 
-    public BankAccount() {
-    }
-
-    // Generate getters/setters
 }

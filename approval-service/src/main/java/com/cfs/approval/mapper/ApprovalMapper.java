@@ -27,19 +27,13 @@ public class ApprovalMapper {
 
     public ApprovalDecisionResponse toResponse(ApprovalDecision approval) {
 
-        ApprovalDecisionResponse response =
-                new ApprovalDecisionResponse();
-
-        response.setApprovalId(approval.getApprovalId());
-        response.setApplicationId(approval.getApplicationId());
-        response.setCreditAssessmentId(
-                approval.getCreditAssessmentId()
-        );
-        response.setDecision(approval.getDecision());
-        response.setReviewedBy(approval.getReviewedBy());
-        response.setRemarks(approval.getRemarks());
-        response.setDecisionDate(approval.getDecisionDate());
-
-        return response;
+        return new ApprovalDecisionResponse(
+                approval.getApprovalId(),
+                approval.getApplicationId(),
+                approval.getCreditAssessmentId(),
+                approval.getDecision(),
+                approval.getReviewedBy(),
+                approval.getRemarks(),
+                approval.getDecisionDate());
     }
 }

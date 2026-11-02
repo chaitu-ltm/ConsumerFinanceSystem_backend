@@ -57,9 +57,9 @@ class ApprovalServiceImplTests {
         when(client.getById(20L)).thenReturn(assessment);
         when(repository.save(any(ApprovalDecision.class))).thenAnswer(invocation -> invocation.getArgument(0));
         var response = service.createDecision(request);
-        assertEquals(ApprovalStatus.APPROVED, response.getDecision());
-        assertEquals(10L, response.getApplicationId());
-        assertEquals(20L, response.getCreditAssessmentId());
+        assertEquals(ApprovalStatus.APPROVED, response.decision());
+        assertEquals(10L, response.applicationId());
+        assertEquals(20L, response.creditAssessmentId());
         verify(client).getById(20L);
         verify(repository).save(any(ApprovalDecision.class));
     }
@@ -70,7 +70,7 @@ class ApprovalServiceImplTests {
         when(repository.save(any(ApprovalDecision.class))).thenAnswer(invocation -> invocation.getArgument(0));
         for (AssessmentStatus status : new AssessmentStatus[]{AssessmentStatus.NOT_ELIGIBLE, null}) {
             assessment.setStatus(status);
-            assertEquals(ApprovalStatus.REJECTED, service.createDecision(request).getDecision());
+            assertEquals(ApprovalStatus.REJECTED, service.createDecision(request).decision());
         }
         verify(client, times(2)).getById(20L);
     }

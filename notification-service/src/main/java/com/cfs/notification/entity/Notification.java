@@ -11,9 +11,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "notifications")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Notification {
 
     @Id
@@ -61,9 +67,6 @@ public class Notification {
     @Column(length = 500)
     private String failureReason;
 
-    public Notification() {
-    }
-
     @PrePersist
     public void prePersist() {
 
@@ -80,138 +83,4 @@ public class Notification {
         }
     }
 
-    public Long getNotificationId() {
-        return notificationId;
-    }
-
-    public void setNotificationId(
-            Long notificationId) {
-        this.notificationId = notificationId;
-    }
-
-    public Long getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
-    }
-
-    public Long getApplicationId() {
-        return applicationId;
-    }
-
-    public void setApplicationId(
-            Long applicationId) {
-        this.applicationId = applicationId;
-    }
-
-    public Long getApprovalId() {
-        return approvalId;
-    }
-
-    public void setApprovalId(Long approvalId) {
-        this.approvalId = approvalId;
-    }
-
-    public Long getDisbursementId() {
-        return disbursementId;
-    }
-
-    public void setDisbursementId(
-            Long disbursementId) {
-        this.disbursementId = disbursementId;
-    }
-
-    public Long getRepaymentId() {
-        return repaymentId;
-    }
-
-    public void setRepaymentId(Long repaymentId) {
-        this.repaymentId = repaymentId;
-    }
-
-    public Long getScheduleId() {
-        return scheduleId;
-    }
-
-    public void setScheduleId(Long scheduleId) {
-        this.scheduleId = scheduleId;
-    }
-
-    public NotificationType getType() {
-        return type;
-    }
-
-    public void setType(NotificationType type) {
-        this.type = type;
-    }
-
-    public NotificationChannel getChannel() {
-        return channel;
-    }
-
-    public void setChannel(
-            NotificationChannel channel) {
-        this.channel = channel;
-    }
-
-    public NotificationStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(
-            NotificationStatus status) {
-        this.status = status;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(
-            LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getSentAt() {
-        return sentAt;
-    }
-
-    public void setSentAt(LocalDateTime sentAt) {
-        this.sentAt = sentAt;
-    }
-
-    public LocalDateTime getReadAt() {
-        return readAt;
-    }
-
-    public void setReadAt(LocalDateTime readAt) {
-        this.readAt = readAt;
-    }
-
-    public String getFailureReason() {
-        return failureReason;
-    }
-
-    public void setFailureReason(
-            String failureReason) {
-        this.failureReason = failureReason;
-    }
 }

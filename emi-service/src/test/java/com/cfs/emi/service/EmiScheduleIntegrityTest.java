@@ -73,10 +73,10 @@ class EmiScheduleIntegrityTest {
         var response = service.generateSchedule(request("100.00", "0", 3));
 
         assertEquals(List.of("33.33", "33.33", "33.34"), amounts());
-        assertEquals(new BigDecimal("100.00"), response.getTotalPayableAmount());
-        assertEquals(new BigDecimal("100.00"), response.getOutstandingAmount());
+        assertEquals(new BigDecimal("100.00"), response.totalPayableAmount());
+        assertEquals(new BigDecimal("100.00"), response.outstandingAmount());
         assertEquals(new BigDecimal("100.00"), sumPrincipal());
-        assertEquals(new BigDecimal("33.33"), response.getMonthlyEmiAmount());
+        assertEquals(new BigDecimal("33.33"), response.monthlyEmiAmount());
     }
 
     @Test
@@ -84,11 +84,11 @@ class EmiScheduleIntegrityTest {
         when(disbursements.getById(90L)).thenReturn(disbursement(90L, 50L, "1000.00", "DISBURSED"));
         var response = service.generateSchedule(request("1000.00", "12", 12));
 
-        assertEquals(new BigDecimal("88.85"), response.getMonthlyEmiAmount());
+        assertEquals(new BigDecimal("88.85"), response.monthlyEmiAmount());
         assertEquals(new BigDecimal("10.00"), savedInstallments.get(0).getInterestComponent());
         assertEquals(new BigDecimal("1000.00"), sumPrincipal());
-        assertEquals(response.getTotalPayableAmount(), sumAmounts());
-        assertEquals(response.getTotalPayableAmount(), response.getOutstandingAmount());
+        assertEquals(response.totalPayableAmount(), sumAmounts());
+        assertEquals(response.totalPayableAmount(), response.outstandingAmount());
         assertEquals(BigDecimal.ZERO.setScale(2),
                 savedInstallments.get(savedInstallments.size() - 1).getOpeningPrincipal()
                         .subtract(savedInstallments.get(savedInstallments.size() - 1).getPrincipalComponent()));
@@ -101,8 +101,8 @@ class EmiScheduleIntegrityTest {
 
         assertMoneyValues();
         assertEquals(new BigDecimal("1234.56"), sumPrincipal());
-        assertEquals(sumAmounts(), response.getTotalPayableAmount());
-        assertEquals(sumAmounts(), response.getOutstandingAmount());
+        assertEquals(sumAmounts(), response.totalPayableAmount());
+        assertEquals(sumAmounts(), response.outstandingAmount());
     }
 
     @Test
@@ -112,7 +112,7 @@ class EmiScheduleIntegrityTest {
 
         assertEquals(List.of("0.00", "0.00", "0.01"), amounts());
         assertEquals(new BigDecimal("0.01"), sumPrincipal());
-        assertEquals(new BigDecimal("0.01"), response.getTotalPayableAmount());
+        assertEquals(new BigDecimal("0.01"), response.totalPayableAmount());
         assertTrue(savedInstallments.stream().allMatch(item -> item.getPrincipalComponent().signum() >= 0));
         assertEquals(2, savedInstallments.stream()
                 .filter(item -> item.getEmiAmount().signum() == 0 && item.getStatus() == com.cfs.emi.entity.EmiStatus.PAID)

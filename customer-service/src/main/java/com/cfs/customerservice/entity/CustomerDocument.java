@@ -3,9 +3,15 @@ package com.cfs.customerservice.entity;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "customer_documents")
+@Getter
+@Setter
+@NoArgsConstructor
 public class CustomerDocument {
 
     @Id
@@ -30,64 +36,4 @@ public class CustomerDocument {
     @Column(name = "uploaded_at", nullable = false)
     private LocalDateTime uploadedAt;
 
-    public CustomerDocument() {
-    }
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Long getCustomerId() {
-		return customerId;
-	}
-
-	public void setCustomerId(Long customerId) {
-		this.customerId = customerId;
-	}
-
-	public String getDocumentType() {
-		return documentType;
-	}
-
-	public void setDocumentType(String documentType) {
-		this.documentType = documentType;
-	}
-
-	public String getFileName() {
-		return fileName;
-	}
-
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
-
-	public String getFilePath() {
-		return filePath;
-	}
-
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
-	}
-
-	public String getVerificationStatus() {
-		return verificationStatus;
-	}
-
-	public void setVerificationStatus(String verificationStatus) {
-		this.verificationStatus = verificationStatus;
-	}
-
-	public LocalDateTime getUploadedAt() {
-		return uploadedAt;
-	}
-
-	public void setUploadedAt(LocalDateTime uploadedAt) {
-		this.uploadedAt = uploadedAt;
-	}
-
-    // Generate getters/setters
 }

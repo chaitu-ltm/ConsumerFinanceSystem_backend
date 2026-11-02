@@ -240,65 +240,35 @@ public class EmiScheduleServiceImpl implements EmiScheduleService {
 	}
 
 	private LoanAccountResponse toLoanAccountResponse(LoanAccount loanAccount) {
-
-		LoanAccountResponse response = new LoanAccountResponse();
-
-		response.setLoanAccountId(loanAccount.getLoanAccountId());
-
-		response.setApplicationId(loanAccount.getApplicationId());
-
-		response.setCustomerId(loanAccount.getCustomerId());
-
-		response.setDisbursementId(loanAccount.getDisbursementId());
-
-		response.setPrincipalAmount(loanAccount.getPrincipalAmount());
-
-		response.setAnnualInterestRate(loanAccount.getAnnualInterestRate());
-
-		response.setTenureMonths(loanAccount.getTenureMonths());
-
-		response.setMonthlyEmiAmount(loanAccount.getMonthlyEmiAmount());
-
-		response.setTotalPayableAmount(loanAccount.getTotalPayableAmount());
-
-		response.setOutstandingAmount(loanAccount.getOutstandingAmount());
-
-		response.setStartDate(loanAccount.getStartDate());
-
-		response.setMaturityDate(loanAccount.getMaturityDate());
-
-		response.setStatus(loanAccount.getStatus());
-
-		return response;
+		return new LoanAccountResponse(
+				loanAccount.getLoanAccountId(),
+				loanAccount.getApplicationId(),
+				loanAccount.getCustomerId(),
+				loanAccount.getDisbursementId(),
+				loanAccount.getPrincipalAmount(),
+				loanAccount.getAnnualInterestRate(),
+				loanAccount.getTenureMonths(),
+				loanAccount.getMonthlyEmiAmount(),
+				loanAccount.getTotalPayableAmount(),
+				loanAccount.getOutstandingAmount(),
+				loanAccount.getStartDate(),
+				loanAccount.getMaturityDate(),
+				loanAccount.getStatus());
 	}
 
 	private EmiInstallmentResponse toInstallmentResponse(EmiInstallment installment) {
-
-		EmiInstallmentResponse response = new EmiInstallmentResponse();
-
-		response.setEmiId(installment.getEmiId());
-
-		response.setLoanAccountId(installment.getLoanAccountId());
-
-		response.setInstallmentNumber(installment.getInstallmentNumber());
-
-		response.setDueDate(installment.getDueDate());
-
-		response.setOpeningPrincipal(installment.getOpeningPrincipal());
-
-		response.setPrincipalComponent(installment.getPrincipalComponent());
-
-		response.setInterestComponent(installment.getInterestComponent());
-
-		response.setEmiAmount(installment.getEmiAmount());
-
-		response.setAmountPaid(installment.getAmountPaid());
-
-		response.setStatus(installment.getStatus());
-
-		response.setPaidAt(installment.getPaidAt());
-
-		return response;
+		return new EmiInstallmentResponse(
+				installment.getEmiId(),
+				installment.getLoanAccountId(),
+				installment.getInstallmentNumber(),
+				installment.getDueDate(),
+				installment.getOpeningPrincipal(),
+				installment.getPrincipalComponent(),
+				installment.getInterestComponent(),
+				installment.getEmiAmount(),
+				installment.getAmountPaid(),
+				installment.getStatus(),
+				installment.getPaidAt());
 	}
 
 }

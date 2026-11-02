@@ -264,8 +264,8 @@ class CustomerServiceImplKycTest {
 
         OnboardingStatusResponse response = service.getOnboardingStatus(CUSTOMER_ID);
 
-        assertFalse(response.isDocumentsCompleted());
-        assertEquals("IN_PROGRESS", response.getOnboardingStatus());
+        assertFalse(response.documentsCompleted());
+        assertEquals("IN_PROGRESS", response.onboardingStatus());
     }
 
     @Test
@@ -275,9 +275,9 @@ class CustomerServiceImplKycTest {
 
         OnboardingStatusResponse response = service.getOnboardingStatus(CUSTOMER_ID);
 
-        assertTrue(response.isDocumentsCompleted());
-        assertEquals("VERIFIED", response.getKycStatus());
-        assertEquals("COMPLETED", response.getOnboardingStatus());
+        assertTrue(response.documentsCompleted());
+        assertEquals("VERIFIED", response.kycStatus());
+        assertEquals("COMPLETED", response.onboardingStatus());
     }
 
     @Test
@@ -285,7 +285,7 @@ class CustomerServiceImplKycTest {
         when(customerRepository.findById(CUSTOMER_ID)).thenReturn(Optional.of(customer("REJECTED")));
         stubAllPrerequisites();
 
-        assertEquals("ACTION_REQUIRED", service.getOnboardingStatus(CUSTOMER_ID).getOnboardingStatus());
+        assertEquals("ACTION_REQUIRED", service.getOnboardingStatus(CUSTOMER_ID).onboardingStatus());
     }
 
     @Test

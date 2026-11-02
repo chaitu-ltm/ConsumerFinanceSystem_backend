@@ -154,31 +154,17 @@ public class RepaymentServiceImpl implements RepaymentService {
 	}
 
 	private RepaymentResponse toResponse(Repayment repayment, Integer installmentNumber) {
-
-		RepaymentResponse response = new RepaymentResponse();
-
-		response.setRepaymentId(repayment.getRepaymentId());
-
-		response.setLoanAccountId(repayment.getLoanAccountId());
-
-		response.setEmiId(repayment.getEmiId());
-
-		response.setInstallmentNumber(installmentNumber);
-
-		response.setPaymentReference(repayment.getPaymentReference());
-
-		response.setAmount(repayment.getAmount());
-
-		response.setPaymentDate(repayment.getPaymentDate());
-
-		response.setPaymentMethod(repayment.getPaymentMethod());
-
-		response.setStatus(repayment.getStatus());
-
-		response.setRecordedBy(repayment.getRecordedBy());
-
-		response.setRemarks(repayment.getRemarks());
-
-		return response;
+		return new RepaymentResponse(
+				repayment.getRepaymentId(),
+				repayment.getLoanAccountId(),
+				repayment.getEmiId(),
+				installmentNumber,
+				repayment.getPaymentReference(),
+				repayment.getAmount(),
+				repayment.getPaymentDate(),
+				repayment.getPaymentMethod(),
+				repayment.getStatus(),
+				repayment.getRecordedBy(),
+				repayment.getRemarks());
 	}
 }

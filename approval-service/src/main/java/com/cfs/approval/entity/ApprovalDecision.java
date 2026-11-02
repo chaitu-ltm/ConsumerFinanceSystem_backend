@@ -12,7 +12,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(
         name = "approval_decisions",
@@ -48,9 +54,6 @@ public class ApprovalDecision {
     @Column(name = "decision_date", nullable = false)
     private LocalDateTime decisionDate;
 
-    public ApprovalDecision() {
-    }
-
     @PrePersist
     public void prePersist() {
         if (decisionDate == null) {
@@ -58,59 +61,4 @@ public class ApprovalDecision {
         }
     }
 
-    public Long getApprovalId() {
-        return approvalId;
-    }
-
-    public void setApprovalId(Long approvalId) {
-        this.approvalId = approvalId;
-    }
-
-    public Long getApplicationId() {
-        return applicationId;
-    }
-
-    public void setApplicationId(Long applicationId) {
-        this.applicationId = applicationId;
-    }
-
-    public Long getCreditAssessmentId() {
-        return creditAssessmentId;
-    }
-
-    public void setCreditAssessmentId(Long creditAssessmentId) {
-        this.creditAssessmentId = creditAssessmentId;
-    }
-
-    public ApprovalStatus getDecision() {
-        return decision;
-    }
-
-    public void setDecision(ApprovalStatus decision) {
-        this.decision = decision;
-    }
-
-    public String getReviewedBy() {
-        return reviewedBy;
-    }
-
-    public void setReviewedBy(String reviewedBy) {
-        this.reviewedBy = reviewedBy;
-    }
-
-    public String getRemarks() {
-        return remarks;
-    }
-
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
-    }
-
-    public LocalDateTime getDecisionDate() {
-        return decisionDate;
-    }
-
-    public void setDecisionDate(LocalDateTime decisionDate) {
-        this.decisionDate = decisionDate;
-    }
 }

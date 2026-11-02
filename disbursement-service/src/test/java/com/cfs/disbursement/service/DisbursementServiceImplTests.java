@@ -55,13 +55,13 @@ class DisbursementServiceImplTests {
         when(client.getApprovalByApplicationId(10L)).thenReturn(approval);
         when(repository.save(any(Disbursement.class))).thenAnswer(invocation -> invocation.getArgument(0));
         var response = service.createDisbursement(request, "manager");
-        assertEquals(30L, response.getApprovalId());
-        assertEquals(10L, response.getApplicationId());
-        assertEquals(request.getAmount(), response.getAmount());
-        assertEquals(DisbursementStatus.DISBURSED, response.getStatus());
-        assertEquals("manager", response.getProcessedBy());
-        assertTrue(response.getTransactionReference().matches("CFSDIS-[A-F0-9]{16}"));
-        assertNotNull(response.getDisbursedAt());
+        assertEquals(30L, response.approvalId());
+        assertEquals(10L, response.applicationId());
+        assertEquals(request.getAmount(), response.amount());
+        assertEquals(DisbursementStatus.DISBURSED, response.status());
+        assertEquals("manager", response.processedBy());
+        assertTrue(response.transactionReference().matches("CFSDIS-[A-F0-9]{16}"));
+        assertNotNull(response.disbursedAt());
     }
 
     @Test

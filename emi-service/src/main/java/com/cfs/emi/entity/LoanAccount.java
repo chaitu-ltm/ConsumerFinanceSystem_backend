@@ -12,9 +12,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "loan_accounts")
+@Getter
+@Setter
+@NoArgsConstructor
 public class LoanAccount {
 
 	@Id
@@ -45,118 +51,6 @@ public class LoanAccount {
 	@Column(nullable = false, precision = 15, scale = 2)
 	private BigDecimal totalPayableAmount;
 
-	public Long getLoanAccountId() {
-		return loanAccountId;
-	}
-
-	public void setLoanAccountId(Long loanAccountId) {
-		this.loanAccountId = loanAccountId;
-	}
-
-	public Long getApplicationId() {
-		return applicationId;
-	}
-
-	public void setApplicationId(Long applicationId) {
-		this.applicationId = applicationId;
-	}
-
-	public Long getCustomerId() {
-		return customerId;
-	}
-
-	public void setCustomerId(Long customerId) {
-		this.customerId = customerId;
-	}
-
-	public Long getDisbursementId() {
-		return disbursementId;
-	}
-
-	public void setDisbursementId(Long disbursementId) {
-		this.disbursementId = disbursementId;
-	}
-
-	public BigDecimal getPrincipalAmount() {
-		return principalAmount;
-	}
-
-	public void setPrincipalAmount(BigDecimal principalAmount) {
-		this.principalAmount = principalAmount;
-	}
-
-	public BigDecimal getAnnualInterestRate() {
-		return annualInterestRate;
-	}
-
-	public void setAnnualInterestRate(BigDecimal annualInterestRate) {
-		this.annualInterestRate = annualInterestRate;
-	}
-
-	public Integer getTenureMonths() {
-		return tenureMonths;
-	}
-
-	public void setTenureMonths(Integer tenureMonths) {
-		this.tenureMonths = tenureMonths;
-	}
-
-	public BigDecimal getMonthlyEmiAmount() {
-		return monthlyEmiAmount;
-	}
-
-	public void setMonthlyEmiAmount(BigDecimal monthlyEmiAmount) {
-		this.monthlyEmiAmount = monthlyEmiAmount;
-	}
-
-	public BigDecimal getTotalPayableAmount() {
-		return totalPayableAmount;
-	}
-
-	public void setTotalPayableAmount(BigDecimal totalPayableAmount) {
-		this.totalPayableAmount = totalPayableAmount;
-	}
-
-	public BigDecimal getOutstandingAmount() {
-		return outstandingAmount;
-	}
-
-	public void setOutstandingAmount(BigDecimal outstandingAmount) {
-		this.outstandingAmount = outstandingAmount;
-	}
-
-	public LocalDate getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(LocalDate startDate) {
-		this.startDate = startDate;
-	}
-
-	public LocalDate getMaturityDate() {
-		return maturityDate;
-	}
-
-	public void setMaturityDate(LocalDate maturityDate) {
-		this.maturityDate = maturityDate;
-	}
-
-	public LoanAccountStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(LoanAccountStatus status) {
-		this.status = status;
-	}
-
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
-
 	@Column(nullable = false, precision = 15, scale = 2)
 	private BigDecimal outstandingAmount;
 
@@ -168,6 +62,4 @@ public class LoanAccount {
 	private LoanAccountStatus status;
 
 	private LocalDateTime createdAt;
-
-	
 }

@@ -4,7 +4,13 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(
         name = "disbursements",
@@ -65,71 +71,4 @@ public class Disbursement {
     )
     private LocalDateTime disbursedAt;
 
-    public Disbursement() {
-    }
-
-    public Long getDisbursementId() {
-        return disbursementId;
-    }
-
-    public void setDisbursementId(Long disbursementId) {
-        this.disbursementId = disbursementId;
-    }
-
-    public Long getApplicationId() {
-        return applicationId;
-    }
-
-    public void setApplicationId(Long applicationId) {
-        this.applicationId = applicationId;
-    }
-
-    public Long getApprovalId() {
-        return approvalId;
-    }
-
-    public void setApprovalId(Long approvalId) {
-        this.approvalId = approvalId;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public DisbursementStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(DisbursementStatus status) {
-        this.status = status;
-    }
-
-    public String getTransactionReference() {
-        return transactionReference;
-    }
-
-    public void setTransactionReference(
-            String transactionReference) {
-        this.transactionReference = transactionReference;
-    }
-
-    public String getProcessedBy() {
-        return processedBy;
-    }
-
-    public void setProcessedBy(String processedBy) {
-        this.processedBy = processedBy;
-    }
-
-    public LocalDateTime getDisbursedAt() {
-        return disbursedAt;
-    }
-
-    public void setDisbursedAt(LocalDateTime disbursedAt) {
-        this.disbursedAt = disbursedAt;
-    }
 }

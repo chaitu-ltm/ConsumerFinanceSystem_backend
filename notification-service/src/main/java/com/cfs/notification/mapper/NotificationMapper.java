@@ -60,70 +60,21 @@ public class NotificationMapper {
 
     public NotificationResponse toResponse(
             Notification notification) {
-
-        NotificationResponse response =
-                new NotificationResponse();
-
-        response.setNotificationId(
-                notification.getNotificationId()
-        );
-
-        response.setCustomerId(
-                notification.getCustomerId()
-        );
-
-        response.setApplicationId(
-                notification.getApplicationId()
-        );
-
-        response.setApprovalId(
-                notification.getApprovalId()
-        );
-
-        response.setDisbursementId(
-                notification.getDisbursementId()
-        );
-
-        response.setRepaymentId(
-                notification.getRepaymentId()
-        );
-
-        response.setScheduleId(
-                notification.getScheduleId()
-        );
-
-        response.setType(
-                notification.getType()
-        );
-
-        response.setChannel(
-                notification.getChannel()
-        );
-
-        response.setStatus(
-                notification.getStatus()
-        );
-
-        response.setSubject(
-                notification.getSubject()
-        );
-
-        response.setMessage(
-                notification.getMessage()
-        );
-
-        response.setCreatedAt(
-                notification.getCreatedAt()
-        );
-
-        response.setSentAt(
-                notification.getSentAt()
-        );
-
-        response.setReadAt(
-                notification.getReadAt()
-        );
-
-        return response;
+        return new NotificationResponse(
+                notification.getNotificationId(),
+                notification.getCustomerId(),
+                notification.getApplicationId(),
+                notification.getApprovalId(),
+                notification.getDisbursementId(),
+                notification.getRepaymentId(),
+                notification.getScheduleId(),
+                notification.getType(),
+                notification.getChannel(),
+                notification.getStatus(),
+                notification.getSubject(),
+                notification.getMessage(),
+                notification.getCreatedAt(),
+                notification.getSentAt(),
+                notification.getReadAt());
     }
 }

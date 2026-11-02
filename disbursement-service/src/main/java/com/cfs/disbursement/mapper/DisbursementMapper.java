@@ -11,41 +11,14 @@ public class DisbursementMapper {
     public DisbursementResponse toResponse(
             Disbursement entity) {
 
-        DisbursementResponse response =
-                new DisbursementResponse();
-
-        response.setDisbursementId(
-                entity.getDisbursementId()
-        );
-
-        response.setApplicationId(
-                entity.getApplicationId()
-        );
-
-        response.setApprovalId(
-                entity.getApprovalId()
-        );
-
-        response.setAmount(
-                entity.getAmount()
-        );
-
-        response.setStatus(
-                entity.getStatus()
-        );
-
-        response.setTransactionReference(
-                entity.getTransactionReference()
-        );
-
-        response.setProcessedBy(
-                entity.getProcessedBy()
-        );
-
-        response.setDisbursedAt(
-                entity.getDisbursedAt()
-        );
-
-        return response;
+        return new DisbursementResponse(
+                entity.getDisbursementId(),
+                entity.getApplicationId(),
+                entity.getApprovalId(),
+                entity.getAmount(),
+                entity.getStatus(),
+                entity.getTransactionReference(),
+                entity.getProcessedBy(),
+                entity.getDisbursedAt());
     }
 }

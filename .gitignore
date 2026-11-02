@@ -35,3 +35,6 @@ Thumbs.db
 # Java crash files
 hs_err_pid*
 replay_pid*
+
+# IntelliJ accidental unresolved Maven output
+**/${project.build.directory}/

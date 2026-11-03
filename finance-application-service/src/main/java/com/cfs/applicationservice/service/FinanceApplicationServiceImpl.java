@@ -2,6 +2,9 @@ package com.cfs.applicationservice.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cfs.applicationservice.client.CustomerServiceClient;
 
 import com.cfs.applicationservice.dto.ApplicationAssessmentContextResponse;
+import com.cfs.applicationservice.dto.AssessmentQueueItemResponse;
 import com.cfs.applicationservice.dto.CustomerOnboardingResponse;
 import com.cfs.applicationservice.dto.FinanceApplicationRequest;
 import com.cfs.applicationservice.dto.FinanceApplicationResponse;
@@ -170,6 +174,34 @@ public class FinanceApplicationServiceImpl
     // =====================================================
     // GET APPLICATION BY ID
     // =====================================================
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<AssessmentQueueItemResponse> getAssessmentQueue(String status) {
+        if (status != null && !ApplicationStatus.SUBMITTED.name().equals(status)) {
+            throw new IllegalArgumentException("Only SUBMITTED status is supported for the assessment queue");
+        }
+        List<FinanceApplication> applications =
+                applicationRepository.findByStatus(ApplicationStatus.SUBMITTED);
+        if (applications.isEmpty()) {
+            return List.of();
+        }
+        List<Long> productIds = applications.stream().map(FinanceApplication::getProductId).distinct().toList();
+        Map<Long, LoanProduct> products = loanProductRepository.findAllById(productIds).stream()
+                .collect(Collectors.toMap(LoanProduct::getId, Function.identity()));
+        return applications.stream().map(application -> {
+            LoanProduct product = products.get(application.getProductId());
+            if (product == null) {
+                throw new ResourceNotFoundException(
+                        "Loan product not found with ID: " + application.getProductId());
+            }
+            return new AssessmentQueueItemResponse(
+                    application.getId(), application.getApplicationNumber(), application.getCustomerId(),
+                    application.getProductId(), product.getProductName(), application.getRequestedAmount(),
+                    application.getRequestedTenureMonths(), application.getLoanPurpose(),
+                    application.getSubmittedAt(), application.getStatus().name());
+        }).toList();
+    }
 
     @Override
     @Transactional(readOnly = true)

@@ -43,6 +43,8 @@ public class SecurityConfig {
                         .requestMatchers("/actuator/health", "/actuator/health/**", "/actuator/info").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/loan-products", "/api/loan-products/*").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/loan-products").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/applications/assessment-queue")
+                            .hasAnyRole("ADMIN", "CREDIT_ANALYST", "CREDIT_MANAGER")
                         .requestMatchers(HttpMethod.GET, "/api/applications/*/assessment-context")
                             .hasAnyRole("ADMIN", "CREDIT_ANALYST", "CREDIT_MANAGER")
                         .requestMatchers(HttpMethod.POST, "/api/applications", "/api/applications/*/submit")

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.cfs.applicationservice.entity.FinanceApplication;
+import com.cfs.applicationservice.entity.ApplicationStatus;
 
 public interface FinanceApplicationRepository
         extends JpaRepository<FinanceApplication, Long> {
@@ -18,4 +19,6 @@ public interface FinanceApplicationRepository
     List<FinanceApplication> findByCustomerId(
             Long customerId
     );
+
+    List<FinanceApplication> findByStatus(ApplicationStatus status);
 }

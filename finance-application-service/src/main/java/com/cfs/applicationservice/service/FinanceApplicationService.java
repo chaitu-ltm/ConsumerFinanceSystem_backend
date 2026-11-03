@@ -3,11 +3,14 @@ package com.cfs.applicationservice.service;
 import java.util.List;
 
 import com.cfs.applicationservice.dto.ApplicationAssessmentContextResponse;
+import com.cfs.applicationservice.dto.AssessmentQueueItemResponse;
 import com.cfs.applicationservice.dto.FinanceApplicationRequest;
 import com.cfs.applicationservice.dto.FinanceApplicationResponse;
 import com.cfs.applicationservice.dto.StatusHistoryResponse;
 
 public interface FinanceApplicationService {
+
+    List<AssessmentQueueItemResponse> getAssessmentQueue(String status);
 
     /**
      * Reads only the application ID and current status, without product or history access.

@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cfs.applicationservice.dto.FinanceApplicationRequest;
 import com.cfs.applicationservice.dto.ApplicationAssessmentContextResponse;
+import com.cfs.applicationservice.dto.AssessmentQueueItemResponse;
 import com.cfs.applicationservice.dto.FinanceApplicationResponse;
 import com.cfs.applicationservice.dto.StatusHistoryResponse;
 
@@ -53,6 +55,12 @@ public class FinanceApplicationController {
                 );
     }
 
+
+    @GetMapping("/assessment-queue")
+    public ResponseEntity<List<AssessmentQueueItemResponse>> getAssessmentQueue(
+            @RequestParam(required = false) String status) {
+        return ResponseEntity.ok(financeApplicationService.getAssessmentQueue(status));
+    }
 
     @GetMapping("/{applicationId}/assessment-context")
     public ResponseEntity<ApplicationAssessmentContextResponse> getAssessmentContext(

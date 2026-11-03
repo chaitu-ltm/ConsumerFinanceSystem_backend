@@ -98,6 +98,43 @@ class SecurityConfigTests {
     }
 
     @Test
+    void assessmentQueueAllowsOnlyStaffAndDoesNotRequireQueryParameter() throws Exception {
+        for (String role : List.of("ROLE_ADMIN", "ROLE_CREDIT_ANALYST", "ROLE_CREDIT_MANAGER")) {
+            for (String path : List.of("/api/applications/assessment-queue",
+                    "/api/applications/assessment-queue?status=SUBMITTED")) {
+                mvc.perform(get(path).header("Authorization", bearer(role)))
+                        .andExpect(status().isOk());
+            }
+        }
+        for (String role : List.of("ROLE_CUSTOMER", "ROLE_LOAN_OFFICER", "ROLE_UNKNOWN",
+                "ADMIN", "CREDIT_ANALYST", "CREDIT_MANAGER")) {
+            mvc.perform(get("/api/applications/assessment-queue").header("Authorization", bearer(role)))
+                    .andExpect(status().isForbidden());
+        }
+    }
+
+    @Test
+    void assessmentQueueRejectsMissingAndInvalidTokensWithoutRedirect() throws Exception {
+        mvc.perform(get("/api/applications/assessment-queue"))
+                .andExpect(status().isUnauthorized()).andExpect(header().doesNotExist("Location"));
+        mvc.perform(get("/api/applications/assessment-queue").header("Authorization", "Bearer invalid"))
+                .andExpect(status().isUnauthorized()).andExpect(header().doesNotExist("Location"));
+    }
+
+    @Test
+    void assessmentQueueDoesNotAuthorizeOtherMethodsOrDescendantPaths() throws Exception {
+        for (String role : List.of("ROLE_ADMIN", "ROLE_CREDIT_ANALYST", "ROLE_CREDIT_MANAGER")) {
+            for (String method : List.of("POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS")) {
+                mvc.perform(request(org.springframework.http.HttpMethod.valueOf(method),
+                                "/api/applications/assessment-queue").header("Authorization", bearer(role)))
+                        .andExpect(status().isForbidden());
+            }
+            mvc.perform(get("/api/applications/assessment-queue/extra").header("Authorization", bearer(role)))
+                    .andExpect(status().isForbidden());
+        }
+    }
+
+    @Test
     void assessmentContextAllowsOnlyStaffRoles() throws Exception {
         for (String role : List.of("ROLE_ADMIN", "ROLE_CREDIT_ANALYST", "ROLE_CREDIT_MANAGER")) {
             mvc.perform(get("/api/applications/1/assessment-context")
